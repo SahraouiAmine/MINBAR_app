@@ -7,6 +7,7 @@ temporal coverage, cross-calibration diagnostics, and GC standard candles.
 import sys, os
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.append(os.path.dirname(__file__))
 
 import numpy as np
 import pandas as pd

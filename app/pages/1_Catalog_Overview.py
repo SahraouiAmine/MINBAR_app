@@ -16,7 +16,7 @@ from plotly.subplots import make_subplots
 from scipy import stats as sp_stats
 import streamlit as st
 
-from pages.utils.physics_helpers import (
+from utils.physics_helpers import (
     compute_kde_peaks,
     sources_with_enough_bursts,
     compute_gc_fluxes,

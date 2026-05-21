@@ -132,7 +132,7 @@ st.markdown(
 )
 
 # ── Data loading ──────────────────────────────────────────────────────────────
-BASE_DIR = os.environ.get("LMXB_DATA_DIR", "/Users/aminesahraoui/lmxb-pre-gaia")
+BASE_DIR = os.environ.get("LMXB_DATA_DIR", "/")
 
 @st.cache_data(show_spinner="Loading MINBAR & LMXB catalogs…")
 def load_data():

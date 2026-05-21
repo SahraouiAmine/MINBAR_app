@@ -99,7 +99,7 @@ st.markdown(
 )
 
 # ── Data loading ──────────────────────────────────────────────────────────────
-BASE_DIR    = os.environ.get("LMXB_DATA_DIR", "/Users/aminesahraoui/lmxb-pre-gaia")
+BASE_DIR    = os.environ.get("LMXB_DATA_DIR", ".")
 QUASAR_DIR  = Path(BASE_DIR) / "data" / "raw" / "qusars"   # note: matches your folder name
 
 AVAILABLE = {

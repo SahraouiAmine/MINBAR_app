@@ -325,12 +325,7 @@ with tab_metrics:
 
     with col_pre:
         st.markdown("#### PRE Burst Fraction by Source (top 20)")
-        st.markdown(
-            '<p class="section-note">'
-            "Sources with a high PRE fraction are strong standard-candle candidates."
-            "</p>",
-            unsafe_allow_html=True,
-        )
+      
         pre_counts = bursts[pre_mask]["name"].value_counts().rename("N_PRE")
         all_counts = valid_bursts["name"].value_counts().rename("N_all")
         frac_df = pd.concat([pre_counts, all_counts], axis=1).dropna()

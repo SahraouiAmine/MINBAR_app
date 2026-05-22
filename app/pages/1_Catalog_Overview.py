@@ -961,8 +961,7 @@ with tab_bio:
 # ══════════════════════════════════════════════════════════════════════════════
 with tab_calib:
     st.markdown(
-        "Systematic instrument-to-instrument flux offsets can masquerade as astrophysical "
-        "variability. This tab quantifies inter-instrument consistency for heavily-observed sources."
+        "Looking for systematic instrument-to-instrument flux offsets."
     )
 
     _calib_cts = (
@@ -1029,8 +1028,8 @@ with tab_calib:
             st.markdown("##### Kolmogorov–Smirnov pairwise tests")
             st.markdown(
                 '<p class="section-note">'
-                "p < 0.05 suggests the two instruments sample different flux distributions, "
-                "possibly indicating a calibration offset."
+                "p < 0.05 suggests the two instruments sample different flux distributions. "
+                "See https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test"
                 "</p>",
                 unsafe_allow_html=True,
             )

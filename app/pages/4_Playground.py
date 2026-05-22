@@ -294,41 +294,6 @@ if len(df_sel) == 0:
 
 st.markdown("---")
 
-# ── Landing plot: Peak flux over time ────────────────────────────────────────
-st.markdown("#### Peak flux over time")
-
-landing_df = df_sel.dropna(subset=["time", "bpflux"]).copy()
-epoch = pd.Timestamp("1858-11-17")
-landing_df["_date"] = epoch + pd.to_timedelta(landing_df["time"], unit="D")
-
-fig_landing = go.Figure()
-for idx, instr in enumerate(sorted(landing_df["instr"].dropna().unique())):
-    sub = landing_df[landing_df["instr"] == instr]
-    fig_landing.add_trace(go.Scattergl(
-        x=sub["_date"], y=sub["bpflux"],
-        mode="markers",
-        name=instr,
-        marker=dict(size=3, color=_INSTR_COLORS.get(instr, _PALETTE[idx % len(_PALETTE)]), opacity=0.5),
-        hovertemplate=f"<b>{instr}</b><br>%{{x|%d %b %Y}}<br>bpflux: %{{y:.2f}}<extra></extra>",
-    ))
-
-_y = landing_df["bpflux"].dropna()
-_ylo, _yhi = float(_y.quantile(0.01)), float(_y.quantile(0.99))
-_ypad = (_yhi - _ylo) * 0.05
-
-fig_landing.update_layout(
-    **_LAYOUT_COMMON,
-    xaxis=dict(title="Date", tickformat="%Y"),
-    yaxis=dict(
-        title="Bolometric peak flux (10⁻⁹ erg/s/cm²)",
-        range=[_ylo - _ypad, _yhi + _ypad],
-    ),
-    legend=dict(orientation="h", y=-0.2, font_size=11),
-    margin=dict(t=10, b=60),
-    height=350,
-)
-st.plotly_chart(fig_landing, use_container_width=True)
-
 # ── Tabs ──────────────────────────────────────────────────────────────────────
 tab_xy, tab_hist, tab_ts, tab_matrix, tab_table = st.tabs([
     "X vs Y",

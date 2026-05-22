@@ -493,10 +493,6 @@ with tab_metrics:
 # TAB 2 — Temporal Coverage
 # ══════════════════════════════════════════════════════════════════════════════
 with tab_temporal:
-    st.markdown(
-        "Burst detection cadence, cumulative discovery timeline, "
-        "and instrument era coverage."
-    )
 
     dated = bursts.dropna(subset=["date"]).copy()
     dated["year"] = dated["date"].dt.year
@@ -630,9 +626,8 @@ with tab_temporal:
 # ══════════════════════════════════════════════════════════════════════════════
 with tab_bio:
     st.markdown(
-        "Sources with a **bimodal peak-flux distribution** likely alternate between "
+        "Sources with a **bimodal peak-flux distribution** alternate between "
         "**hydrogen-rich** (lower flux) and **pure-helium** (higher flux) ignition. "
-        "The ratio of the two peaks encodes the fuel composition.",
     )
 
     bio_sources = sources_with_enough_bursts(bursts, min_bursts=min_bursts_bio)
@@ -810,7 +805,7 @@ with tab_bio:
     st.markdown(
         '<p class="section-note">'
         "Time-ordered peak fluxes coloured by instrument. "
-        "Flux jumps coinciding with instrument transitions reveal cross-calibration offsets."
+        
         "</p>",
         unsafe_allow_html=True,
     )

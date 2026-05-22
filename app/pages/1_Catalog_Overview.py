@@ -1066,7 +1066,7 @@ with tab_gc:
             "Exclude sources",
             options=list(KUULKERS_TO_MINBAR.keys()),
             default=["4U 1746-37", "GRS 1747-312"],
-            help="Sources with contaminated distances or unusual physics.",
+            help="Unusually faint PREs.",
         )
         st.markdown("---")
         st.markdown("##### Time window")
@@ -1259,7 +1259,6 @@ with tab_gc:
         st.markdown(
             '<p class="section-note">'
             "Fractional deviation (L − L_crit) / L_crit per GC source. "
-            "Large outliers indicate non-standard physics or observational issues."
             "</p>",
             unsafe_allow_html=True,
         )

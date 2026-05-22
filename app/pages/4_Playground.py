@@ -92,7 +92,7 @@ div.stAlert { background: #111116; border: 1px solid #222; }
 </style>
 """, unsafe_allow_html=True)
 
-st.title("MINBAR Playground")
+st.title(" Playground")
 st.markdown(
     "<p style='color:#777; font-family:Instrument Sans; margin-top:-0.8rem; font-size:0.92rem'>"
     "Free-form exploration — select sources, pick columns, plot.</p>",
@@ -103,7 +103,7 @@ st.markdown(
 BASE_DIR = os.environ.get("LMXB_DATA_DIR", ".")
 FULL_CSV  = os.path.join(BASE_DIR, "minbar_bursts_full.csv")
 
-@st.cache_data(show_spinner="Loading MINBAR catalogue…")
+@st.cache_data(show_spinner="Loading  catalogue…")
 def load_full():
     try:
         with open(FULL_CSV, "r") as _f:

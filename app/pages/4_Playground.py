@@ -671,13 +671,19 @@ with tab_ts:
                     color = _PALETTE[idx % len(_PALETTE)]
                 _add_ts(sub, str(grp_val), color)
 
+        _y_vals = ts_df[ts_y_col].dropna()
+        _y_lo = float(_y_vals.quantile(0.01))
+        _y_hi = float(_y_vals.quantile(0.99))
+        _y_pad = (_y_hi - _y_lo) * 0.05
+
         fig_ts2.update_layout(
             **_LAYOUT_COMMON,
             xaxis_title="Date" if ts_time_col == "_date" else "Time (MJD)",
             yaxis=dict(
                 title=f"{ts_y_col}" + (f"  —  {_COL_HINTS[ts_y_col]}" if ts_y_col in _COL_HINTS else ""),
                 type="log" if ts_y_log else "linear",
-            ),
+                range=[_y_lo - _y_pad, _y_hi + _y_pad],
+            ),    
             legend=dict(orientation="h", y=-0.2, font_size=10),
             margin=dict(t=20, b=70),
             height=500,

@@ -1025,28 +1025,28 @@ with tab_calib:
             )
             st.plotly_chart(fig_box, use_container_width=True)
 
-            st.markdown("##### Kolmogorov–Smirnov pairwise tests")
-            st.markdown(
-                '<p class="section-note">'
-                "p < 0.05 suggests the two instruments sample different flux distributions. "
-                "See https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test"
-                "</p>",
-                unsafe_allow_html=True,
-            )
-            ks_rows = []
-            instruments = idf["Instrument"].tolist()
-            for i in range(len(instruments)):
-                for j in range(i + 1, len(instruments)):
-                    a = src_df[src_df["instr"] == instruments[i]]["bpflux"].to_numpy()
-                    b = src_df[src_df["instr"] == instruments[j]]["bpflux"].to_numpy()
-                    ks_stat, ks_p = sp_stats.ks_2samp(a, b)
-                    ks_rows.append({
-                        "Pair": f"{instruments[i]}  vs  {instruments[j]}",
-                        "KS statistic": round(ks_stat, 4),
-                        "p-value": round(ks_p, 4),
-                        "Significant?": "Y" if ks_p < 0.05 else "—",
-                    })
-            st.dataframe(pd.DataFrame(ks_rows), use_container_width=True, hide_index=True)
+            # st.markdown("##### Kolmogorov–Smirnov pairwise tests")
+            # st.markdown(
+            #     '<p class="section-note">'
+            #     "p < 0.05 suggests the two instruments sample different flux distributions. "
+            #     "See https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test"
+            #     "</p>",
+            #     unsafe_allow_html=True,
+            # )
+            # ks_rows = []
+            # instruments = idf["Instrument"].tolist()
+            # for i in range(len(instruments)):
+            #     for j in range(i + 1, len(instruments)):
+            #         a = src_df[src_df["instr"] == instruments[i]]["bpflux"].to_numpy()
+            #         b = src_df[src_df["instr"] == instruments[j]]["bpflux"].to_numpy()
+            #         ks_stat, ks_p = sp_stats.ks_2samp(a, b)
+            #         ks_rows.append({
+            #             "Pair": f"{instruments[i]}  vs  {instruments[j]}",
+            #             "KS statistic": round(ks_stat, 4),
+            #             "p-value": round(ks_p, 4),
+            #             "Significant?": "Y" if ks_p < 0.05 else "—",
+            #         })
+            # st.dataframe(pd.DataFrame(ks_rows), use_container_width=True, hide_index=True)
 
             st.markdown("##### Per-instrument summary")
             st.dataframe(idf.round(2), use_container_width=True, hide_index=True)

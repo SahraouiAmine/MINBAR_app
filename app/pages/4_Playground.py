@@ -101,7 +101,7 @@ st.markdown(
 
 # ── Data loading ──────────────────────────────────────────────────────────────
 BASE_DIR = os.environ.get("LMXB_DATA_DIR", ".")
-FULL_CSV  = os.path.join(BASE_DIR, "data/raw/minbar/minbar_bursts_full.csv")
+FULL_CSV  = os.path.join(BASE_DIR, "minbar_bursts_full.csv")
 
 @st.cache_data(show_spinner="Loading MINBAR catalogue…")
 def load_full():

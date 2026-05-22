@@ -425,15 +425,25 @@ with tab_xy:
                     ),
                 ))
 
+        _xv = plot_df[x_col].dropna()
+        _xlo, _xhi = float(_xv.quantile(0.01)), float(_xv.quantile(0.99))
+        _xpad = (_xhi - _xlo) * 0.05
+
+        _yv = plot_df[y_col].dropna()
+        _ylo, _yhi = float(_yv.quantile(0.01)), float(_yv.quantile(0.99))
+        _ypad = (_yhi - _ylo) * 0.05
+
         fig_xy.update_layout(
             **_LAYOUT_COMMON,
             xaxis=dict(
                 title=f"{x_col}" + (f"  —  {_COL_HINTS[x_col]}" if x_col in _COL_HINTS else ""),
                 type="log" if x_log else "linear",
+                range=[_xlo - _xpad, _xhi + _xpad],
             ),
             yaxis=dict(
                 title=f"{y_col}" + (f"  —  {_COL_HINTS[y_col]}" if y_col in _COL_HINTS else ""),
                 type="log" if y_log else "linear",
+                range=[_ylo - _ypad, _yhi + _ypad],
             ),
             legend=dict(orientation="v", x=1.01, font_size=10, itemsizing="constant"),
             margin=dict(t=20, b=20, r=200 if group_col else 20),

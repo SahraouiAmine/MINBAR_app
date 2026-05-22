@@ -357,12 +357,7 @@ with tab_metrics:
 
     with col_flux:
         st.markdown("#### Peak Flux Distribution (all sources)")
-        st.markdown(
-            '<p class="section-note">'
-            "The high-flux tail is enriched with PRE events."
-            "</p>",
-            unsafe_allow_html=True,
-        )
+        
         _flux_all = valid_bursts["bpflux"].to_numpy()
         _flux_pre = valid_bursts.loc[valid_bursts["rexp"] >= rexp_threshold, "bpflux"].to_numpy()
         _bmax = float(np.percentile(_flux_all, 99))
@@ -390,13 +385,7 @@ with tab_metrics:
 
     st.markdown("---")
     st.markdown("#### Radius-Expansion Flag (rexp) Distribution")
-    st.markdown(
-        '<p class="section-note">'
-        "Natural clustering near 1 and 2 validates the binary PRE classification. "
-        "The intermediate region is where threshold choice matters most."
-        "</p>",
-        unsafe_allow_html=True,
-    )
+    
 
     rexp_col, rexp_ctrl = st.columns([3, 1])
 
@@ -464,13 +453,6 @@ with tab_metrics:
 
     st.markdown("---")
     st.markdown("#### Flux vs. Duration")
-    st.markdown(
-        '<p class="section-note">'
-        "Short, bright bursts tend to be hydrogen-poor (pure He ignition). "
-        "PRE bursts cluster at the bright end."
-        "</p>",
-        unsafe_allow_html=True,
-    )
 
     _dur_col = None
     for c in ["e_b.dur", "dur", "tdel"]:
